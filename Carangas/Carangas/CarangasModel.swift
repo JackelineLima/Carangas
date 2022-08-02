@@ -31,3 +31,7 @@ class Carangas: Codable {
         }
     }
 }
+
+struct Brand: Codable {
+    var nome: String
+}

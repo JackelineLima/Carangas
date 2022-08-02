@@ -79,6 +79,44 @@ class CarangasBusiness {
         task.resume()
     }
     
+    class func loadBrands(onCompletion: @escaping ([Brand]?) -> Void) {
+        guard let url = URL(string: "https://parallelum.com.br/fipe/api/v1/carros/marcas") else {
+            onCompletion(nil)
+            return
+        }
+        
+        let task = session.dataTask(with: url) { data, response, error in
+            
+            if error == nil {
+                guard let response = response as? HTTPURLResponse else {
+                    onCompletion(nil)
+                    return
+                }
+                
+                if response.statusCode == 200 {
+                    guard let data = data else {
+                        onCompletion(nil)
+                        return
+                    }
+
+                    do {
+                        let response = try JSONDecoder().decode([Brand].self, from: data)
+                        onCompletion(response)
+                    } catch {
+                        onCompletion(nil)
+                    }
+                    
+                } else {
+                    onCompletion(nil)
+                }
+
+            } else {
+                onCompletion(nil)
+            }
+        }
+        task.resume()
+    }
+    
     class func save(car: Carangas, onCompletion: @escaping (Bool) -> Void) {
         apply(car: car, operation: .save, onCompletion: onCompletion)
     }
