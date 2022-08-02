@@ -20,6 +20,10 @@ class AddEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+    
+    private func setupView() {
         if car != nil {
             tfBrand.text = car.brand
             tfName.text = car.name
