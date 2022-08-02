@@ -72,6 +72,11 @@ class AddEditViewController: UIViewController {
     }
     
     @IBAction func addEdit(_ sender: UIButton) {
+        sender.isEnabled = false
+        sender.backgroundColor = .gray
+        sender.alpha = 0.5
+        loading.startAnimating()
+        
         if car == nil {
             car = Carangas()
         }

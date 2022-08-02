@@ -10,8 +10,16 @@ import UIKit
 class CarsTableViewController: UITableViewController {
     
     var cars: [Carangas] = []
+    
+    var label: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "main")
+        return label
+    }()
 
     override func viewDidLoad() {
+        label.text = "Carregando carros...."
         super.viewDidLoad()
     }
     
@@ -21,6 +29,7 @@ class CarsTableViewController: UITableViewController {
         CarangasBusiness.loadCars { [weak self] response in
             self?.cars = response
             DispatchQueue.main.async {
+                self?.label.text = "Não existem carros cadastrados...."
                 self?.tableView.reloadData()
             }
         } onError: { error in
@@ -46,6 +55,7 @@ class CarsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView = cars.count == 0 ? label : nil
         return cars.count
     }
 
