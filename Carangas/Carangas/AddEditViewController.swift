@@ -9,7 +9,6 @@ import UIKit
 
 class AddEditViewController: UIViewController {
 
-    // MARK: - IBOutlets
     @IBOutlet weak var tfBrand: UITextField!
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfPrice: UITextField!
@@ -19,7 +18,6 @@ class AddEditViewController: UIViewController {
     
     var car: Carangas!
 
-    // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         if car != nil {
@@ -31,7 +29,6 @@ class AddEditViewController: UIViewController {
         }
     }
     
-    // MARK: - IBActions
     @IBAction func addEdit(_ sender: UIButton) {
         if car == nil {
             car = Carangas()
