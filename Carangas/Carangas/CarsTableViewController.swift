@@ -25,7 +25,10 @@ class CarsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        loadInfoView()
+    }
+    
+    private func loadInfoView() {
         CarangasBusiness.loadCars { [weak self] response in
             self?.cars = response
             DispatchQueue.main.async {

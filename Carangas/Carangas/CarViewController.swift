@@ -16,21 +16,24 @@ class CarViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
-    var car: Carangas!
+    var car: Carangas?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        title = car.name
-        lbBrand.text = car.brand
-        lbGasType.text = car.gas
-        lbPrice.text = "R$ \(car.price)"
+        loadInfoView()
+    }
+    
+    private func loadInfoView() {
+        title = car?.name
+        lbBrand.text = car?.brand
+        lbGasType.text = car?.gas
+        lbPrice.text = "R$ \(car?.price)"
         
-        let name = (title! + "+" + car.brand).replacingOccurrences(of: "", with: "+")
+        let name = (title! + "+" + (car?.brand ?? "")).replacingOccurrences(of: "", with: "+")
         let urlString = "https://www.google.com.br/search?q=\(name)&tbm=isch"
         let url = URL(string: urlString)!
         let request = URLRequest(url: url)

@@ -46,28 +46,23 @@ class CarangasBusiness {
             onError(.url)
             return
         }
-        
         let task = session.dataTask(with: url) { data, response, error in
-            
             if error == nil {
                 guard let response = response as? HTTPURLResponse else {
                     onError(.noRespose)
                     return
                 }
-                
                 if response.statusCode == 200 {
                     guard let data = data else {
                         onError(.noData)
                         return
                     }
-
                     do {
                         let response = try JSONDecoder().decode([Carangas].self, from: data)
                         onCompletion(response)
                     } catch {
                         onError(.invalidJson)
                     }
-                    
                 } else {
                     onError(.responseStatusCode(code: response.statusCode))
                 }
@@ -84,7 +79,6 @@ class CarangasBusiness {
             onCompletion(nil)
             return
         }
-        
         let task = session.dataTask(with: url) { data, response, error in
             
             if error == nil {
