@@ -39,12 +39,12 @@ class AddEditViewController: UIViewController {
         car?.gasType = scGasType.selectedSegmentIndex
         
         if car?.id == nil {
-            CarangasBusiness.save(car: car!) { _ in
-                self.goBack()
+            CarangasBusiness.save(car: car!) { [weak self] _ in
+                self?.goBack()
             }
         } else {
-            CarangasBusiness.upDate(car: car!) { _ in
-                self.goBack()
+            CarangasBusiness.upDate(car: car!) { [weak self] _ in
+                self?.goBack()
             }
         }
     }

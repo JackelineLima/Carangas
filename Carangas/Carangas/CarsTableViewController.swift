@@ -60,9 +60,9 @@ class CarsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let car = cars[indexPath.row]
-            CarangasBusiness.delete(car: car) { sucess in
+            CarangasBusiness.delete(car: car) { [weak self] sucess in
                 if sucess {
-                    self.cars.remove(at: indexPath.row)
+                    self?.cars.remove(at: indexPath.row)
                     DispatchQueue.main.async {
                         tableView.deleteRows(at: [indexPath], with: .fade)
                     }
