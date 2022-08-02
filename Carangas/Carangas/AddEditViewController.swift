@@ -17,8 +17,9 @@ class AddEditViewController: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
     var car: Carangas?
-    var brands: [Brand] = []
-    lazy var pickerView: UIPickerView = {
+    private var brands: [Brand] = []
+    
+    private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.backgroundColor = .white
         picker.delegate = self
