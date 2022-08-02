@@ -16,9 +16,10 @@ class AddEditViewController: UIViewController {
     @IBOutlet weak var btAddEdit: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
-    var car: Carangas!
-    var brands: [Brand] = []
-    lazy var pickerView: UIPickerView = {
+    var car: Carangas?
+    private var brands: [Brand] = []
+    
+    private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.backgroundColor = .white
         picker.delegate = self
@@ -45,9 +46,9 @@ class AddEditViewController: UIViewController {
     
     private func setupView() {
         if car != nil {
-            tfBrand.text = car.brand
-            tfName.text = car.name
-            tfPrice.text = "\(car.price)"
+            tfBrand.text = car?.brand
+            tfName.text = car?.name
+            tfPrice.text = "\(car?.price)"
             scGasType.selectedSegmentIndex = car!.gasType
             btAddEdit.setTitle("Alterar carro", for: .normal)
         }
